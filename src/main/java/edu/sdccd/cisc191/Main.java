@@ -11,7 +11,7 @@ public class Main {
         shapes.add(new Triangle("C", 3, 4, 5));
 
         // Polymorphic loop
-        System.out.println("=== All Shapes ===");
+        System.out.println("All Shapes");
         for (Shape s : shapes) {
             System.out.println(s.describe() + " area=" + s.area());
         }
