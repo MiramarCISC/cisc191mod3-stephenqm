@@ -2,10 +2,11 @@ package edu.sdccd.cisc191;
 
 import java.util.Objects;
 
-public class Triangle extends Shape {
-    private double a;
-    private double b;
-    private double c;
+public class Triangle extends Shape implements Measurable { /// added implementation of Measurable interface
+    /// made variables final
+    private final double a;
+    private final double b;
+    private final double c;
 
     public Triangle(String name, double a, double b, double c) {
         super(name);
@@ -28,7 +29,7 @@ public class Triangle extends Shape {
     public double area() {
         double s = (a + b + c) / 2;
 
-        return Math.sqrt(s * (s - a) * (s - b) * (s - c));
+        return Math.sqrt(s * (s - a) * (s - b) * (s - c)); /// Good work with the Heron's formula
     }
 
     @Override
@@ -39,9 +40,10 @@ public class Triangle extends Shape {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(obj instanceof Triangle)) return false;
+        if (obj == null || getClass() != obj.getClass()) return false; /// fixed small error by using getClass instead of instanceOf
         Triangle other = (Triangle) obj;
-        return this.name.equals(other.name)
+        /// changed to this.name.equals(other.name) to Objects.equals(this.name, other.name) so that it doesn't crash when name is null
+        return Objects.equals(this.name, other.name)
                 && Double.compare(this.a, other.a) == 0
                 && Double.compare(this.b, other.b) == 0
                 && Double.compare(this.c, other.c) == 0;

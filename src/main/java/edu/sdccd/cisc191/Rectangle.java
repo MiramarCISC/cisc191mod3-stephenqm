@@ -2,9 +2,10 @@ package edu.sdccd.cisc191;
 
 import java.util.Objects;
 
-public class Rectangle extends Shape {
-    private double width;
-    private double height;
+public class Rectangle extends Shape implements Measurable { /// added implementation of Measurable interface
+/// made variables final
+    private final double width;
+    private final double height;
 
     public Rectangle(String name, double width, double height) {
         super(name);
@@ -40,9 +41,10 @@ public class Rectangle extends Shape {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(obj instanceof Rectangle)) return false;
+        if (obj == null || getClass() != obj.getClass()) return false; /// fixed small error by using getClass instead of instanceOf
         Rectangle other = (Rectangle) obj;
-        return this.name.equals(other.name)
+        /// changed to this.name.equals(other.name) to Objects.equals(this.name, other.name) so that it doesn't crash when name is null
+        return Objects.equals(this.name, other.name)
                 && Double.compare(this.width, other.width) == 0
                 && Double.compare(this.height, other.height) == 0;
     }
