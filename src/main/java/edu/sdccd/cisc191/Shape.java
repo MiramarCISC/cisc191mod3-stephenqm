@@ -26,14 +26,15 @@ public abstract class Shape implements Comparable<Shape> {
         return getClass().getSimpleName() + "[" + name + "]";
     }
 
+    /// changed it to compare the areas rather than names
     @Override
     public int compareTo(Shape other) {
-
-        return this.name.compareTo(other.name);
+        return Double.compare(this.area(), other.area());
     }
 
     @Override
     public String toString() {
+        /// Nice work!!
         return describe() + " area=" + String.format("%.2f", area());
     }
 }
